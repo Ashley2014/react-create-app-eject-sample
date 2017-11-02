@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+
+
+
+
 }
 
 .App-logo {
@@ -17,6 +21,14 @@
 .App-title {
   font-size: 1.5em;
 }
+.abc{
+  .cc{
+    color: #ffffff;
+  }
+  .dd{
+    color: #ff8888;
+  }
+}
 
 .App-intro {
   font-size: large;
@@ -26,3 +38,4 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
