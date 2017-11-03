@@ -215,6 +215,7 @@ module.exports = {
             use: styleLoadersUseConfigs.concat({
               loader: require.resolve("less-loader"),
               options: {
+                compress: true,
                 sourceMap: true,
               }
             }),
