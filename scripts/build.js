@@ -5,7 +5,7 @@ process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 
 //customer
-process.env.GENERATE_SOURCEMAP = false;
+// process.env.GENERATE_SOURCEMAP = false;
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will

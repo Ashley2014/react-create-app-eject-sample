@@ -189,6 +189,8 @@ module.exports = {
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
               cacheDirectory: true,
+
+              plugins: [require('babel-plugin-transform-decorators-legacy').default]
             },
           },
           // "postcss" loader applies autoprefixer to our CSS.

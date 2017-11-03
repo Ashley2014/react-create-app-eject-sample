@@ -184,6 +184,7 @@ module.exports = {
             options: {
 
               compact: true,
+              plugins: [require('babel-plugin-transform-decorators-legacy').default]
             },
           },
           // The notation here is somewhat confusing.
