@@ -230,7 +230,7 @@ module.exports = {
                   use: styleLoadersUseConfigs.concat({
                     loader: require.resolve("sass-loader"),
                     options: {
-                      sourceMap: false
+                      sourceMap: shouldUseSourceMap
                     }
                   }),
                 },
@@ -239,7 +239,7 @@ module.exports = {
             ),
           },
           {
-            test: /\.scss$/,
+            test: /\.less/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -252,7 +252,7 @@ module.exports = {
                   use: styleLoadersUseConfigs.concat({
                     loader: require.resolve("less-loader"),
                     options: {
-                      sourceMap: false
+                      sourceMap: shouldUseSourceMap
                     }
                   }),
                 },
