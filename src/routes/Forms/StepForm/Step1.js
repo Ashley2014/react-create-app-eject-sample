@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button, Select, Divider } from 'antd';
 import { routerRedux } from 'dva/router';
 import styles from './style.less';
 
@@ -91,8 +91,7 @@ export default ({ formItemLayout, form, dispatch }) => {
           </Button>
         </Form.Item>
       </Form>
-      {/*<Divider style={{ margin: '40px 0 24px' }} />*/}
-      <div className="">old divider</div>
+      <Divider style={{ margin: '40px 0 24px' }} />
       <div className={styles.desc}>
         <h3>说明</h3>
         <h4>转账到支付宝账户</h4>

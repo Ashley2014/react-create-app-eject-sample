@@ -2,6 +2,9 @@ import BasicLayout from '../layouts/BasicLayout';
 import UserLayout from '../layouts/UserLayout';
 import BlankLayout from '../layouts/BlankLayout';
 
+import Order from '../routes/Order/OrderDetail';
+
+
 import Analysis from '../routes/Dashboard/Analysis';
 import Monitor from '../routes/Dashboard/Monitor';
 import Workplace from '../routes/Dashboard/Workplace';
@@ -36,9 +39,18 @@ import RegisterResult from '../routes/User/RegisterResult';
 const data = [{
   component: BasicLayout,
   layout: 'BasicLayout',
-  name: '首页', // for breadcrumb
+  name: '订单发货管理', // for breadcrumb
   path: '',
   children: [{
+    name: 'Order',
+    icon: 'order',
+    path: 'order',
+    children: [{
+      name: '订单详情',
+      path: 'order',
+      component: Order,
+    }],
+  },{
     name: 'Dashboard',
     icon: 'dashboard',
     path: 'dashboard',

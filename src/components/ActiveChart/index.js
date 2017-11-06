@@ -1,13 +1,10 @@
 import React, { PureComponent } from 'react';
 
-import {MiniArea } from '../Charts';
-// let { MiniArea }=chart
-// import * as test  from '../Charts/index.js';
-  import NumberInfo from '../NumberInfo';
+import { MiniArea } from '../Charts';
+import NumberInfo from '../NumberInfo';
 
 import styles from './index.less';
-// var  MiniArea ={}
-// console.log(test)
+
 function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
 }

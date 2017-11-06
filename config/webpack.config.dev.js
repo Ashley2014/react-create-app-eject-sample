@@ -12,43 +12,63 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
-
-let styleLoadersUseConfigs=[
-  // require.resolve('style-loader'),
-  {
+let styleLoaderUseConfig1={
     loader: require.resolve('style-loader'),
     options: {
       sourceMap: true,
     },
-  },
-  {
+  }
+
+let styleLoaderUseConfig2_1={
+    loader: require.resolve('css-loader'),
+    options: {
+      importLoaders: 1,
+      sourceMap: true,
+      modules:true,
+      localIdentName:"[name]__[local]___[hash:base64:5]",
+    },
+  }
+let styleLoaderUseConfig2_2={
     loader: require.resolve('css-loader'),
     options: {
       importLoaders: 1,
       sourceMap: true,
     },
+  }
+
+let styleLoaderUseConfig3={
+  loader: require.resolve('postcss-loader'),
+  options: {
+    // Necessary for external CSS imports to work
+    // https://github.com/facebookincubator/create-react-app/issues/2677
+    sourceMap: true,
+    ident: 'postcss',
+    plugins: () => [
+      require('postcss-flexbugs-fixes'),
+      autoprefixer({
+        browsers: [
+          '>1%',
+          'last 4 versions',
+          'Firefox ESR',
+          'not ie < 9', // React doesn't support IE8 anyway
+        ],
+        flexbox: 'no-2009',
+      }),
+    ],
   },
-  {
-    loader: require.resolve('postcss-loader'),
-    options: {
-      // Necessary for external CSS imports to work
-      // https://github.com/facebookincubator/create-react-app/issues/2677
-      sourceMap: true,
-      ident: 'postcss',
-      plugins: () => [
-        require('postcss-flexbugs-fixes'),
-        autoprefixer({
-          browsers: [
-            '>1%',
-            'last 4 versions',
-            'Firefox ESR',
-            'not ie < 9', // React doesn't support IE8 anyway
-          ],
-          flexbox: 'no-2009',
-        }),
-      ],
-    },
-  },
+}
+
+
+let styleLoadersUseConfigs=[
+  styleLoaderUseConfig1,
+  styleLoaderUseConfig2_1,
+  styleLoaderUseConfig3,
+]
+
+let styleLoadersUseConfigs2=[
+  styleLoaderUseConfig1,
+  styleLoaderUseConfig2_2,
+  styleLoaderUseConfig3,
 ]
 
 
@@ -151,14 +171,14 @@ module.exports = {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
         use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-
-            },
-            loader: require.resolve('eslint-loader'),
-          },
+          // {
+          //   options: {
+          //     formatter: eslintFormatter,
+          //     eslintPath: require.resolve('eslint'),
+          //
+          //   },
+          //   loader: require.resolve('eslint-loader'),
+          // },
         ],
         include: paths.appSrc,
       },
@@ -190,7 +210,10 @@ module.exports = {
               // directory for faster rebuilds.
               cacheDirectory: true,
 
-              plugins: [require('babel-plugin-transform-decorators-legacy').default]
+              plugins: [
+                // ["import", { libraryName: "antd", style: "css" }],
+                require('babel-plugin-transform-decorators-legacy').default
+              ]
             },
           },
           // "postcss" loader applies autoprefixer to our CSS.
@@ -201,6 +224,7 @@ module.exports = {
           {
             test: /\.css$/,
             use: styleLoadersUseConfigs,
+            exclude: [path.resolve(__dirname,'../',  'node_modules')]
           },
           {
             test: /\.scss$/,
@@ -209,8 +233,9 @@ module.exports = {
               options: {
                 outputStyle: 'compressed',
                 sourceMap: true,
-              }
+              },
             }),
+            exclude: [path.resolve(__dirname,'../',  'node_modules')],
           },
           {
             test: /\.less$/,
@@ -219,8 +244,38 @@ module.exports = {
               options: {
                 compress: true,
                 sourceMap: true,
-              }
+              },
             }),
+            exclude: [path.resolve(__dirname,'../',  'node_modules')],
+          },
+
+
+          {
+            test: /\.css$/,
+            use: styleLoadersUseConfigs2,
+            include: [path.resolve(__dirname,'../',  'node_modules')]
+          },
+          {
+            test: /\.scss$/,
+            use: styleLoadersUseConfigs2.concat({
+              loader: require.resolve("sass-loader"),
+              options: {
+                outputStyle: 'compressed',
+                sourceMap: true,
+              },
+            }),
+            include: [path.resolve(__dirname,'../',  'node_modules')],
+          },
+          {
+            test: /\.less$/,
+            use: styleLoadersUseConfigs2.concat({
+              loader: require.resolve("less-loader"),
+              options: {
+                compress: true,
+                sourceMap: true,
+              },
+            }),
+            include: [path.resolve(__dirname,'../',  'node_modules')],
           },
 
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
-import { Link, routerRedux, Route, Redirect, Switch } from 'dva/router';
+import { Link, Route, Redirect, Switch } from 'dva/router';
 import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
@@ -13,7 +13,6 @@ import HeaderSearch from '../components/HeaderSearch';
 import NoticeIcon from '../components/NoticeIcon';
 import GlobalFooter from '../components/GlobalFooter';
 import { getNavData } from '../common/nav';
-
 import { getRouteData } from '../utils/utils';
 
 const { Header, Sider, Content } = Layout;
@@ -81,12 +80,6 @@ class BasicLayout extends React.PureComponent {
     if (key === 'logout') {
       this.props.dispatch({
         type: 'login/logout',
-        payload: {
-          status: false,
-        },
-        callback: () => {
-          this.props.dispatch(routerRedux.push('/user/login'));
-        },
       });
     }
   }
@@ -159,7 +152,7 @@ class BasicLayout extends React.PureComponent {
     const { location } = this.props;
     const { pathname } = location;
     let title = 'Ant Design Pro';
-    getRouteData('UserLayout').forEach((item) => {
+    getRouteData('BasicLayout').forEach((item) => {
       if (item.path === pathname) {
         title = `${item.name} - Ant Design Pro`;
       }

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import { Row, Col, Form, Card, Select, Input } from 'antd';
+import { Row, Col, Form, Card, Select, List, Input } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import StandardFormRow from '../../components/StandardFormRow';
@@ -69,43 +69,42 @@ export default class CoverCardList extends PureComponent {
     const { getFieldDecorator } = form;
 
     const cardList = list ? (
-      <div>old List</div>
-      // <List
-      //   rowKey="id"
-      //   loading={loading}
-      //   grid={{ gutter: 24, lg: 4, md: 3, sm: 2, xs: 1 }}
-      //   dataSource={list}
-      //   renderItem={item => (
-      //     <List.Item>
-      //       <Card
-      //         className={styles.card}
-      //         hoverable
-      //         cover={<img alt={item.title} src={item.cover} />}
-      //       >
-      //         <Card.Meta
-      //           title={<a href="#">{item.title}</a>}
-      //           description={item.subDescription}
-      //         />
-      //         <div className={styles.cardItemContent}>
-      //           <span>{moment(item.updatedAt).fromNow()}</span>
-      //           <div className={styles.avatarList}>
-      //             <AvatarList size="mini">
-      //               {
-      //                 item.members.map((member, i) => (
-      //                   <AvatarList.Item
-      //                     key={`${item.id}-avatar-${i}`}
-      //                     src={member.avatar}
-      //                     tips={member.name}
-      //                   />
-      //                 ))
-      //               }
-      //             </AvatarList>
-      //           </div>
-      //         </div>
-      //       </Card>
-      //     </List.Item>
-      //   )}
-      // />
+      <List
+        rowKey="id"
+        loading={loading}
+        grid={{ gutter: 24, lg: 4, md: 3, sm: 2, xs: 1 }}
+        dataSource={list}
+        renderItem={item => (
+          <List.Item>
+            <Card
+              className={styles.card}
+              hoverable
+              cover={<img alt={item.title} src={item.cover} />}
+            >
+              <Card.Meta
+                title={<a href="#">{item.title}</a>}
+                description={item.subDescription}
+              />
+              <div className={styles.cardItemContent}>
+                <span>{moment(item.updatedAt).fromNow()}</span>
+                <div className={styles.avatarList}>
+                  <AvatarList size="mini">
+                    {
+                      item.members.map((member, i) => (
+                        <AvatarList.Item
+                          key={`${item.id}-avatar-${i}`}
+                          src={member.avatar}
+                          tips={member.name}
+                        />
+                      ))
+                    }
+                  </AvatarList>
+                </div>
+              </div>
+            </Card>
+          </List.Item>
+        )}
+      />
     ) : null;
 
     const tabList = [

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Alert } from 'antd';
+import { Form, Input, Button, Alert, Divider } from 'antd';
 import { routerRedux } from 'dva/router';
 import { digitUppercase } from '../../../utils/utils';
 import styles from './style.less';
@@ -60,8 +60,7 @@ export default ({ formItemLayout, form, data, dispatch, submitting }) => {
         <span className={styles.money}>{data.amount}</span>
         <span className={styles.uppercase}>（{digitUppercase(data.amount)}）</span>
       </Form.Item>
-      {/*<Divider style={{ margin: '24px 0' }} />*/}
-      <div>old Divider</div>
+      <Divider style={{ margin: '24px 0' }} />
       <Form.Item
         {...formItemLayout}
         label="支付密码"

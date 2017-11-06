@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Debounce from 'lodash-decorators/debounce';
 import { connect } from 'dva';
-import { Button, Menu, Dropdown, Icon, Row, Col, Steps, Card, Popover, Badge, Table, Tooltip } from 'antd';
+import { Button, Menu, Dropdown, Icon, Row, Col, Steps, Card, Popover, Badge, Table, Tooltip, Divider } from 'antd';
 import classNames from 'classnames';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import DescriptionList from '../../components/DescriptionList';
@@ -257,15 +257,13 @@ export default class AdvancedProfile extends Component {
               <Description term="过期时间">2017-08-08</Description>
               <Description term="描述">这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...</Description>
             </DescriptionList>
-            {/*<Divider style={{ margin: '16px 0' }} />*/}
-            <div>old divider</div>
+            <Divider style={{ margin: '16px 0' }} />
             <DescriptionList size="small" style={{ marginBottom: 16 }} title="组名称" col="1">
               <Description term="学名">
                 Citrullus lanatus (Thunb.) Matsum. et Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗..
               </Description>
             </DescriptionList>
-            {/*<Divider style={{ margin: '16px 0' }} />*/}
-            <div>old divider</div>
+            <Divider style={{ margin: '16px 0' }} />
             <DescriptionList size="small" title="组名称">
               <Description term="负责人">付小小</Description>
               <Description term="角色码">1234568</Description>

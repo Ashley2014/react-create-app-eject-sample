@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Card, Button, Icon } from 'antd';
+import { Card, Button, Icon, List } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
@@ -55,35 +55,34 @@ export default class CardList extends PureComponent {
         extraContent={extraContent}
       >
         <div className={styles.cardList}>
-          <div>old List</div>
-          {/*<List*/}
-            {/*rowKey="id"*/}
-            {/*loading={loading}*/}
-            {/*grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}*/}
-            {/*dataSource={['', ...list]}*/}
-            {/*renderItem={item => (item ? (*/}
-              {/*<List.Item key={item.id}>*/}
-                {/*<Card hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>*/}
-                  {/*<Card.Meta*/}
-                    {/*avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}*/}
-                    {/*title={<a href="#">{item.title}</a>}*/}
-                    {/*description={(*/}
-                      {/*<p className={styles.cardDescription}>*/}
-                        {/*<span>{item.description}</span>*/}
-                      {/*</p>*/}
-                    {/*)}*/}
-                  {/*/>*/}
-                {/*</Card>*/}
-              {/*</List.Item>*/}
-              {/*) : (*/}
-                {/*<List.Item>*/}
-                  {/*<Button type="dashed" className={styles.newButton}>*/}
-                    {/*<Icon type="plus" /> 新增产品*/}
-                  {/*</Button>*/}
-                {/*</List.Item>*/}
-              {/*)*/}
-            {/*)}*/}
-          {/*/>*/}
+          <List
+            rowKey="id"
+            loading={loading}
+            grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
+            dataSource={['', ...list]}
+            renderItem={item => (item ? (
+              <List.Item key={item.id}>
+                <Card hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>
+                  <Card.Meta
+                    avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
+                    title={<a href="#">{item.title}</a>}
+                    description={(
+                      <p className={styles.cardDescription}>
+                        <span>{item.description}</span>
+                      </p>
+                    )}
+                  />
+                </Card>
+              </List.Item>
+              ) : (
+                <List.Item>
+                  <Button type="dashed" className={styles.newButton}>
+                    <Icon type="plus" /> 新增产品
+                  </Button>
+                </List.Item>
+              )
+            )}
+          />
         </div>
       </PageHeaderLayout>
     );

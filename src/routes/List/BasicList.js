@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
-import {  Card, Row, Col, Radio, Input, Progress, Button, Icon, Dropdown, Menu, Avatar } from 'antd';
+import { List, Card, Row, Col, Radio, Input, Progress, Button, Icon, Dropdown, Menu, Avatar } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
@@ -120,24 +120,23 @@ export default class BasicList extends PureComponent {
             <Button type="dashed" style={{ width: '100%', marginBottom: 8 }} icon="plus">
               添加
             </Button>
-            <div>List</div>
-            {/*<List*/}
-              {/*size="large"*/}
-              {/*rowKey="id"*/}
-              {/*loading={loading}*/}
-              {/*pagination={paginationProps}*/}
-              {/*dataSource={list}*/}
-              {/*renderItem={item => (*/}
-                {/*<List.Item*/}
-                  {/*actions={[<a>编辑</a>, <MoreBtn />]}*/}
-                {/*>*/}
-                  {/*<List.Item.Meta*/}
-                    {/*avatar={<Avatar src={item.logo} shape="square" size="large" />}*/}
-                    {/*title={<a href={item.href}>{item.title}</a>}*/}
-                    {/*description={item.subDescription}*/}
-                  {/*/>*/}
-                  {/*<ListContent data={item} />*/}
-                {/*</List.Item>*/}
+            <List
+              size="large"
+              rowKey="id"
+              loading={loading}
+              pagination={paginationProps}
+              dataSource={list}
+              renderItem={item => (
+                <List.Item
+                  actions={[<a>编辑</a>, <MoreBtn />]}
+                >
+                  <List.Item.Meta
+                    avatar={<Avatar src={item.logo} shape="square" size="large" />}
+                    title={<a href={item.href}>{item.title}</a>}
+                    description={item.subDescription}
+                  />
+                  <ListContent data={item} />
+                </List.Item>
               )}
             />
           </Card>

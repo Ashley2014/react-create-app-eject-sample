@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
-import { Row, Col, Card,  Avatar } from 'antd';
+import { Row, Col, Card, List, Avatar } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import EditableLinkGroup from '../../components/EditableLinkGroup';
@@ -108,26 +108,23 @@ export default class Workplace extends PureComponent {
         return key;
       });
       return (
-
-        <div>old list.item</div>
-
-        // <List.Item key={item.id}>
-        //   <List.Item.Meta
-        //     avatar={<Avatar src={item.user.avatar} />}
-        //     title={
-        //       <span>
-        //         <a className={styles.username}>{item.user.name}</a>
-        //         &nbsp;
-        //         <span className={styles.event}>{events}</span>
-        //       </span>
-        //     }
-        //     description={
-        //       <span className={styles.datetime} title={item.updatedAt}>
-        //         {moment(item.updatedAt).fromNow()}
-        //       </span>
-        //     }
-        //   />
-        // </List.Item>
+        <List.Item key={item.id}>
+          <List.Item.Meta
+            avatar={<Avatar src={item.user.avatar} />}
+            title={
+              <span>
+                <a className={styles.username}>{item.user.name}</a>
+                &nbsp;
+                <span className={styles.event}>{events}</span>
+              </span>
+            }
+            description={
+              <span className={styles.datetime} title={item.updatedAt}>
+                {moment(item.updatedAt).fromNow()}
+              </span>
+            }
+          />
+        </List.Item>
       );
     });
   }
@@ -217,12 +214,11 @@ export default class Workplace extends PureComponent {
               title="动态"
               loading={activitiesLoading}
             >
-              <div>old list</div>
-              {/*<List loading={activitiesLoading} size="large">*/}
-                {/*<div className={styles.activitiesList}>*/}
-                  {/*{this.renderActivities()}*/}
-                {/*</div>*/}
-              {/*</List>*/}
+              <List loading={activitiesLoading} size="large">
+                <div className={styles.activitiesList}>
+                  {this.renderActivities()}
+                </div>
+              </List>
             </Card>
           </Col>
           <Col xl={8} lg={24} md={24} sm={24} xs={24}>

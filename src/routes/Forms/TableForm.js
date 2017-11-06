@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Table, Button, Input, message, Popconfirm } from 'antd';
+import { Table, Button, Input, message, Popconfirm, Divider } from 'antd';
 import styles from './style.less';
 
 export default class TableForm extends PureComponent {
@@ -178,8 +178,7 @@ export default class TableForm extends PureComponent {
             return (
               <span>
                 <a>保存</a>
-                {/*<Divider type="vertical" />*/}
-                <div className="">olddivid</div>
+                <Divider type="vertical" />
                 <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.key)}>
                   <a>删除</a>
                 </Popconfirm>
@@ -189,8 +188,7 @@ export default class TableForm extends PureComponent {
           return (
             <span>
               <a>保存</a>
-              {/*<Divider type="vertical" />*/}
-              <div className="">olddivid</div>
+              <Divider type="vertical" />
               <a onClick={e => this.cancel(e, record.key)}>取消</a>
             </span>
           );
@@ -198,8 +196,7 @@ export default class TableForm extends PureComponent {
         return (
           <span>
             <a onClick={e => this.toggleEditable(e, record.key)}>编辑</a>
-            {/*<Divider type="vertical" />*/}
-            <div className="">olddivid</div>
+            <Divider type="vertical" />
             <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.key)}>
               <a>删除</a>
             </Popconfirm>

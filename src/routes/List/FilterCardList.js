@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import numeral from 'numeral';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import { Row, Col, Form, Card, Select, Icon, Avatar, Tooltip, Input, Dropdown, Menu } from 'antd';
+import { Row, Col, Form, Card, Select, Icon, Avatar, List, Tooltip, Input, Dropdown, Menu } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import StandardFormRow from '../../components/StandardFormRow';
@@ -214,39 +214,38 @@ export default class FilterCardList extends PureComponent {
               </StandardFormRow>
             </Form>
           </Card>
-          <div>old List</div>
-          {/*<List*/}
-            {/*rowKey="id"*/}
-            {/*style={{ marginTop: 24 }}*/}
-            {/*grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}*/}
-            {/*loading={loading}*/}
-            {/*dataSource={list}*/}
-            {/*renderItem={item => (*/}
-              {/*<List.Item key={item.id}>*/}
-                {/*<Card*/}
-                  {/*hoverable*/}
-                  {/*bodyStyle={{ paddingBottom: 20 }}*/}
-                  {/*actions={[*/}
-                    {/*<Tooltip title="下载"><Icon type="download" /></Tooltip>,*/}
-                    {/*<Tooltip title="编辑"><Icon type="edit" /></Tooltip>,*/}
-                    {/*<Tooltip title="分享"><Icon type="share-alt" /></Tooltip>,*/}
-                    {/*<Dropdown overlay={itemMenu}><Icon type="ellipsis" /></Dropdown>,*/}
-                  {/*]}*/}
-                {/*>*/}
-                  {/*<Card.Meta*/}
-                    {/*avatar={<Avatar size="small" src={item.avatar} />}*/}
-                    {/*title={item.title}*/}
-                  {/*/>*/}
-                  {/*<div className={styles.cardItemContent}>*/}
-                    {/*<CardInfo*/}
-                      {/*activeUser={formatWan(item.activeUser)}*/}
-                      {/*newUser={numeral(item.newUser).format('0,0')}*/}
-                    {/*/>*/}
-                  {/*</div>*/}
-                {/*</Card>*/}
-              {/*</List.Item>*/}
-            {/*)}*/}
-          {/*/>*/}
+          <List
+            rowKey="id"
+            style={{ marginTop: 24 }}
+            grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
+            loading={loading}
+            dataSource={list}
+            renderItem={item => (
+              <List.Item key={item.id}>
+                <Card
+                  hoverable
+                  bodyStyle={{ paddingBottom: 20 }}
+                  actions={[
+                    <Tooltip title="下载"><Icon type="download" /></Tooltip>,
+                    <Tooltip title="编辑"><Icon type="edit" /></Tooltip>,
+                    <Tooltip title="分享"><Icon type="share-alt" /></Tooltip>,
+                    <Dropdown overlay={itemMenu}><Icon type="ellipsis" /></Dropdown>,
+                  ]}
+                >
+                  <Card.Meta
+                    avatar={<Avatar size="small" src={item.avatar} />}
+                    title={item.title}
+                  />
+                  <div className={styles.cardItemContent}>
+                    <CardInfo
+                      activeUser={formatWan(item.activeUser)}
+                      newUser={numeral(item.newUser).format('0,0')}
+                    />
+                  </div>
+                </Card>
+              </List.Item>
+            )}
+          />
         </div>
       </PageHeaderLayout>
     );

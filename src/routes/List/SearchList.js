@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import { Form, Card, Select,  Tag, Icon, Avatar, Row, Col, Button, Input } from 'antd';
+import { Form, Card, Select, List, Tag, Icon, Avatar, Row, Col, Button, Input } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import StandardFormRow from '../../components/StandardFormRow';
@@ -12,25 +12,15 @@ import styles from './SearchList.less';
 const { Option } = Select;
 const FormItem = Form.Item;
 
+const pageSize = 5;
+
 @Form.create()
 @connect(state => ({
   list: state.list,
 }))
 export default class SearchList extends Component {
-  state = {
-    count: 3,
-    showLoadMore: true,
-    loadingMore: false,
-  }
-
   componentDidMount() {
-    const { count } = this.state;
-    this.props.dispatch({
-      type: 'list/fetch',
-      payload: {
-        count,
-      },
-    });
+    this.fetchMore();
   }
 
   setOwner = () => {
@@ -40,30 +30,11 @@ export default class SearchList extends Component {
     });
   }
 
-  handleLoadMore = () => {
-    const { count } = this.state;
-    const nextCount = count + 5;
-
-    this.setState({
-      count: nextCount,
-      loadingMore: true,
-    });
+  fetchMore = () => {
     this.props.dispatch({
       type: 'list/fetch',
       payload: {
-        count: nextCount,
-      },
-      callback: () => {
-        this.setState({
-          loadingMore: false,
-        });
-
-        // fack count
-        if (nextCount < 10) {
-          this.setState({
-            showLoadMore: false,
-          });
-        }
+        count: pageSize,
       },
     });
   }
@@ -86,7 +57,6 @@ export default class SearchList extends Component {
   }
 
   render() {
-    const { showLoadMore, loadingMore } = this.state;
     const { form, list: { list, loading } } = this.props;
     const { getFieldDecorator } = form;
 
@@ -165,11 +135,10 @@ export default class SearchList extends Component {
       },
     };
 
-    const loadMore = showLoadMore ? (
+    const loadMore = list.length > 0 ? (
       <div style={{ textAlign: 'center', marginTop: 16 }}>
-        <Button onClick={this.handleLoadMore} style={{ paddingLeft: 48, paddingRight: 48 }}>
-          {loadingMore && (<span><Icon type="loading" /> 加载中...</span>)}
-          {!loadingMore && (<span>加载更多</span>)}
+        <Button onClick={this.fetchMore} style={{ paddingLeft: 48, paddingRight: 48 }}>
+          {loading ? <span><Icon type="loading" /> 加载中...</span> : '加载更多'}
         </Button>
       </div>
     ) : null;
@@ -284,40 +253,39 @@ export default class SearchList extends Component {
             bordered={false}
             bodyStyle={{ padding: '8px 32px 32px 32px' }}
           >
-            <div>list</div>
-            {/*<List*/}
-              {/*size="large"*/}
-              {/*loading={!loadingMore && loading}*/}
-              {/*rowKey="id"*/}
-              {/*itemLayout="vertical"*/}
-              {/*loadMore={loadMore}*/}
-              {/*dataSource={list}*/}
-              {/*renderItem={item => (*/}
-                {/*<List.Item*/}
-                  {/*key={item.id}*/}
-                  {/*actions={[*/}
-                    {/*<IconText type="star-o" text={item.star} />,*/}
-                    {/*<IconText type="like-o" text={item.like} />,*/}
-                    {/*<IconText type="message" text={item.message} />,*/}
-                  {/*]}*/}
-                  {/*extra={<div className={styles.listItemExtra} />}*/}
-                {/*>*/}
-                  {/*<List.Item.Meta*/}
-                    {/*title={(*/}
-                      {/*<a className={styles.listItemMetaTitle} href={item.href}>{item.title}</a>*/}
-                    {/*)}*/}
-                    {/*description={*/}
-                      {/*<span>*/}
-                        {/*<Tag>Ant Design</Tag>*/}
-                        {/*<Tag>设计语言</Tag>*/}
-                        {/*<Tag>蚂蚁金服</Tag>*/}
-                      {/*</span>*/}
-                    {/*}*/}
-                  {/*/>*/}
-                  {/*<ListContent data={item} />*/}
-                {/*</List.Item>*/}
-              {/*)}*/}
-            {/*/>*/}
+            <List
+              size="large"
+              loading={list.length === 0 ? loading : false}
+              rowKey="id"
+              itemLayout="vertical"
+              loadMore={loadMore}
+              dataSource={list}
+              renderItem={item => (
+                <List.Item
+                  key={item.id}
+                  actions={[
+                    <IconText type="star-o" text={item.star} />,
+                    <IconText type="like-o" text={item.like} />,
+                    <IconText type="message" text={item.message} />,
+                  ]}
+                  extra={<div className={styles.listItemExtra} />}
+                >
+                  <List.Item.Meta
+                    title={(
+                      <a className={styles.listItemMetaTitle} href={item.href}>{item.title}</a>
+                    )}
+                    description={
+                      <span>
+                        <Tag>Ant Design</Tag>
+                        <Tag>设计语言</Tag>
+                        <Tag>蚂蚁金服</Tag>
+                      </span>
+                    }
+                  />
+                  <ListContent data={item} />
+                </List.Item>
+              )}
+            />
           </Card>
         </div>
       </PageHeaderLayout>

@@ -1,10 +1,14 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
-import './index.scss';
-import './b.less';
+// import './index.scss';
+import '../node_modules/antd/dist/antd.css'
+
+
+import './index.less';
 import dva from 'dva';
 // import registerServiceWorker from './registerServiceWorker';
-import 'antd/dist/antd.css'
+
+
 import router from './router';
 import models from './models';
 // import { Router, Route } from 'dva/router';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import G2 from 'g2';
-import {  } from 'antd';
+import { Divider } from 'antd';
 import classNames from 'classnames';
 import ReactFitText from 'react-fittext';
 import Debounce from 'lodash-decorators/debounce';
@@ -40,8 +40,7 @@ class Pie extends Component {
       window.removeEventListener('resize', this.resize);
       return;
     }
-    // antd xs size
-    if (this.root.parentNode.clientWidth <= 480) {
+    if (this.root.parentNode.clientWidth <= 380) {
       if (!this.state.legendBlock) {
         this.setState({
           legendBlock: true,
@@ -236,8 +235,7 @@ class Pie extends Component {
                   <li key={item.x} onClick={() => this.handleLegendClick(item, i)}>
                     <span className={styles.dot} style={{ backgroundColor: !item.checked ? '#aaa' : item.color }} />
                     <span className={styles.legendTitle}>{item.x}</span>
-                    {/*<Divider type="vertical" />*/}
-                    <div className="">olddivid</div>
+                    <Divider type="vertical" />
                     <span className={styles.percent}>{`${(item['..percent'] * 100).toFixed(2)}%`}</span>
                     <span
                       className={styles.value}
