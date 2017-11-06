@@ -1,56 +1,61 @@
 import BasicLayout from '../layouts/BasicLayout';
-import UserLayout from '../layouts/UserLayout';
-import BlankLayout from '../layouts/BlankLayout';
+// import UserLayout from '../layouts/UserLayout';
+// import BlankLayout from '../layouts/BlankLayout';
 
 import Order from '../routes/Order/OrderDetail';
 
-
-import Analysis from '../routes/Dashboard/Analysis';
-import Monitor from '../routes/Dashboard/Monitor';
-import Workplace from '../routes/Dashboard/Workplace';
-
-import TableList from '../routes/List/TableList';
-import CoverCardList from '../routes/List/CoverCardList';
-import CardList from '../routes/List/CardList';
-import FilterCardList from '../routes/List/FilterCardList';
-import SearchList from '../routes/List/SearchList';
-import BasicList from '../routes/List/BasicList';
-
-import BasicProfile from '../routes/Profile/BasicProfile';
-import AdvancedProfile from '../routes/Profile/AdvancedProfile';
-
-import BasicForm from '../routes/Forms/BasicForm';
-import AdvancedForm from '../routes/Forms/AdvancedForm';
-import StepForm from '../routes/Forms/StepForm';
-import Step2 from '../routes/Forms/StepForm/Step2';
-import Step3 from '../routes/Forms/StepForm/Step3';
+//
+// import Analysis from '../routes/Dashboard/Analysis';
+// import Monitor from '../routes/Dashboard/Monitor';
+// import Workplace from '../routes/Dashboard/Workplace';
+//
+// import TableList from '../routes/List/TableList';
+// import CoverCardList from '../routes/List/CoverCardList';
+// import CardList from '../routes/List/CardList';
+// import FilterCardList from '../routes/List/FilterCardList';
+// import SearchList from '../routes/List/SearchList';
+// import BasicList from '../routes/List/BasicList';
+//
+// import BasicProfile from '../routes/Profile/BasicProfile';
+// import AdvancedProfile from '../routes/Profile/AdvancedProfile';
+//
+// import BasicForm from '../routes/Forms/BasicForm';
+// import AdvancedForm from '../routes/Forms/AdvancedForm';
+// import StepForm from '../routes/Forms/StepForm';
+// import Step2 from '../routes/Forms/StepForm/Step2';
+// import Step3 from '../routes/Forms/StepForm/Step3';
 
 import Exception403 from '../routes/Exception/403';
 import Exception404 from '../routes/Exception/404';
 import Exception500 from '../routes/Exception/500';
 
-import Success from '../routes/Result/Success';
-import Error from '../routes/Result/Error';
-
-import Login from '../routes/User/Login';
-import Register from '../routes/User/Register';
-import RegisterResult from '../routes/User/RegisterResult';
+// import Success from '../routes/Result/Success';
+// import Error from '../routes/Result/Error';
+//
+// import Login from '../routes/User/Login';
+// import Register from '../routes/User/Register';
+// import RegisterResult from '../routes/User/RegisterResult';
 
 const data = [{
   component: BasicLayout,
   layout: 'BasicLayout',
-  name: '订单发货管理', // for breadcrumb
+  name: 'BasicLayout', // for breadcrumb
   path: '',
   children: [{
-    name: 'Order',
-    icon: 'order',
+    name: '订单发货管理',
+    icon: 'form',
     path: 'order',
     children: [{
-      name: '订单详情',
-      path: 'order',
+      name: '订单列表',
+      path: 'orderList',
       component: Order,
+    },{
+      name: '订单详情',
+      path: 'orderDetail',
+      component: Order,
+      hideSide:true
     }],
-  },{
+  },/*{
     name: 'Dashboard',
     icon: 'dashboard',
     path: 'dashboard',
@@ -146,7 +151,7 @@ const data = [{
       path: 'fail',
       component: Error,
     }],
-  }, {
+  },*/ {
     name: '异常',
     path: 'exception',
     icon: 'warning',
@@ -164,7 +169,7 @@ const data = [{
       component: Exception500,
     }],
   }],
-}, {
+}/*, {
   component: UserLayout,
   layout: 'UserLayout',
   children: [{
@@ -194,7 +199,7 @@ const data = [{
     target: '_blank',
     icon: 'book',
   },
-}];
+}*/];
 
 export function getNavData() {
   return data;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
-import { Link, Route, Redirect, Switch } from 'dva/router';
+import { Link, Route, Redirect, Switch  } from 'dva/router';
 import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
@@ -63,9 +63,9 @@ class BasicLayout extends React.PureComponent {
     return { location, breadcrumbNameMap };
   }
   componentDidMount() {
-    this.props.dispatch({
-      type: 'user/fetchCurrent',
-    });
+    // this.props.dispatch({
+    //   type: 'user/fetchCurrent',
+    // });
   }
   componentWillUnmount() {
     clearTimeout(this.resizeTimeout);
@@ -97,14 +97,26 @@ class BasicLayout extends React.PureComponent {
     if (keys.length === 1 && keys[0] === '') {
       return [this.menus[0].key];
     }
+    console.log(this.props,keys)
+
+    switch (keys[keys.length-1]){
+      case 'orderDetail':
+        return keys.slice(0,-1).concat('orderList')
+        break
+    }
+
     return keys;
   }
   getNavMenuItems(menusData, parentPath = '') {
+
     if (!menusData) {
       return [];
     }
     return menusData.map((item) => {
       if (!item.name) {
+        return null;
+      }
+      if (item.hideSide) {
         return null;
       }
       let itemPath;
@@ -139,7 +151,8 @@ class BasicLayout extends React.PureComponent {
                 {icon}<span>{item.name}</span>
               </a>
             ) : (
-              <Link to={itemPath} target={item.target}>
+
+              <Link to={itemPath} target={item.target}   >
                 {icon}<span>{item.name}</span>
               </Link>
             )

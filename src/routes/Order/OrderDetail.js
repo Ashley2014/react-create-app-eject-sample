@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Row, Col } from 'antd';
+import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import { getTimeDistance } from '../../utils/utils';
 
 import styles from './OrderDetail.less';
@@ -27,16 +27,16 @@ export default class Analysis extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch({
-      type: 'chart/fetch',
-    }).then(() => this.setState({ loading: false }));
+    // this.props.dispatch({
+    //   type: 'chart/fetch',
+    // }).then(() => this.setState({ loading: false }));
   }
 
   componentWillUnmount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'chart/clear',
-    });
+    // const { dispatch } = this.props;
+    // dispatch({
+    //   type: 'chart/clear',
+    // });
   }
 
 
@@ -54,33 +54,13 @@ export default class Analysis extends Component {
   render() {
 
 
-    const topColResponsiveProps = {
-      xs: 24,
-      sm: 12,
-      md: 12,
-      lg: 12,
-      xl: 6,
-      style: { marginBottom: 24 },
-    };
 
     return (
-      <div>
-        <Row gutter={24}>
-          <Col {...topColResponsiveProps}>
-            dskjfnhew
-          </Col>
-          <Col {...topColResponsiveProps}>
-          </Col>
-          <Col {...topColResponsiveProps}>
-          </Col>
-          <Col {...topColResponsiveProps}>
-          </Col>
-        </Row>
+      <PageHeaderLayout title="订单详情" content="表单页用于向用户">
+        fewaf
 
 
-
-
-      </div>
+      </PageHeaderLayout>
     );
   }
 }

@@ -2,8 +2,7 @@
 // import ReactDOM from 'react-dom';
 // import './index.scss';
 import '../node_modules/antd/dist/antd.css'
-
-
+// import '../node_modules/antd/lib/style/v2-compatible-reset.less';
 import './index.less';
 import dva from 'dva';
 // import registerServiceWorker from './registerServiceWorker';
