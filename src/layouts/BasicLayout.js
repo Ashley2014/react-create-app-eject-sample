@@ -97,8 +97,6 @@ class BasicLayout extends React.PureComponent {
     if (keys.length === 1 && keys[0] === '') {
       return [this.menus[0].key];
     }
-    console.log(this.props,keys)
-
     switch (keys[keys.length-1]){
       case 'orderDetail':
         return keys.slice(0,-1).concat('orderList')

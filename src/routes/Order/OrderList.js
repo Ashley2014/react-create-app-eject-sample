@@ -25,7 +25,7 @@ export default class OrderDetail extends Component {
   render() {
 
     return (
-      <PageHeaderLayout title="订单详情" content="订单详情订单详情订单详情">
+      <PageHeaderLayout title="订单列表" content="订单列表订单列表订单列表">
         fewaf
 
 

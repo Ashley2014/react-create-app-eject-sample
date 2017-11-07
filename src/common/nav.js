@@ -2,7 +2,8 @@ import BasicLayout from '../layouts/BasicLayout';
 // import UserLayout from '../layouts/UserLayout';
 // import BlankLayout from '../layouts/BlankLayout';
 
-import Order from '../routes/Order/OrderDetail';
+import OrderList from '../routes/Order/OrderList';
+import OrderDetail from '../routes/Order/OrderDetail';
 
 //
 // import Analysis from '../routes/Dashboard/Analysis';
@@ -48,11 +49,11 @@ const data = [{
     children: [{
       name: '订单列表',
       path: 'orderList',
-      component: Order,
+      component: OrderList,
     },{
       name: '订单详情',
       path: 'orderDetail',
-      component: Order,
+      component: OrderDetail,
       hideSide:true
     }],
   },/*{
